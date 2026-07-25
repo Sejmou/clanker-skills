@@ -16,7 +16,7 @@ done
 cmd="exec uv run marimo edit $(printf '%q' "$notebook") --headless --watch --no-token --host $(printf '%q' "$host") --port $(printf '%q' "$port")"
 
 if [[ -n "${TMUX:-}" ]]; then
-  target="$(tmux new-window -P -F '#S:#I' -n "$name" -c "$dir" "$cmd")"
+  target="$(tmux new-window -d -P -F '#S:#I' -n "$name" -c "$dir" "$cmd")"
 else
   tmux new-session -d -s "$name" -c "$dir" "$cmd"
   target="${name}:0"

@@ -13,7 +13,7 @@ while ss -ltn "sport = :$port" | grep -q LISTEN; do
   port=$((port + 1))
 done
 
-cmd="exec uv run marimo edit $(printf '%q' "$notebook") --headless --host $(printf '%q' "$host") --port $(printf '%q' "$port")"
+cmd="exec uv run marimo edit $(printf '%q' "$notebook") --headless --watch --no-token --host $(printf '%q' "$host") --port $(printf '%q' "$port")"
 
 if [[ -n "${TMUX:-}" ]]; then
   target="$(tmux new-window -P -F '#S:#I' -n "$name" -c "$dir" "$cmd")"
